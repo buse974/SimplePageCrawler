@@ -38,8 +38,11 @@ class PageCrawler
         $httpClient = $this->getHttpClient();
         $httpClient->setUri($uri);
         $source = $httpClient->send();
-
-        $response = PageParser::fromPageSource($source->getBody(), $uri);
+        $charset = $source->getHeaders()->get('content-type')->getCharset();
+        $charset = (!empty($charset))?$charset:'utf-8';
+        $content = $source->getBody();
+        $content = mb_convert_encoding($content, 'HTML-ENTITIES', $charset);
+        $response = PageParser::fromPageSource($content, $uri);
         return $response;
     }
 
