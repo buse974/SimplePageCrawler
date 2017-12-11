@@ -1,5 +1,5 @@
 {
-    "name": "blanchonvincent/simple-page-crawler",
+    "name": "buse974/simple-page-crawler",
     "description": "ZF3 module v0.3.0 - Provide a crawler to get web page informations : title, meta, heading tags and images",
     "version": "0.3.0",
     "type": "module",
