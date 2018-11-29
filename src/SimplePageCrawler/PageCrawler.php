@@ -39,7 +39,7 @@ class PageCrawler
         $httpClient->setUri($uri);
         $source = $httpClient->send();
         $charset = $source->getHeaders()->get('content-type')->getCharset();
-        $charset = (!empty($charset))?$charset:'utf-8';
+        $charset = (!empty($charset) && !empty($charset->getCharset()))?$charset->getCharset():'utf-8';
         $content = $source->getBody();
         $content = mb_convert_encoding($content, 'HTML-ENTITIES', $charset);
         $response = PageParser::fromPageSource($content, $uri);
