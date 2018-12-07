@@ -38,7 +38,7 @@ class PageCrawler
         $httpClient = $this->getHttpClient();
         $httpClient->setUri($uri);
         $source = $httpClient->send();
-        $charset = $source->getHeaders()->get('content-type')->getCharset();
+        $charset = $source->getHeaders()->get('content-type');
         $charset = (!empty($charset) && !empty($charset->getCharset()))?$charset->getCharset():'utf-8';
         $content = $source->getBody();
         $content = mb_convert_encoding($content, 'HTML-ENTITIES', $charset);
